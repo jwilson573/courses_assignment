@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <h2>Add a new course</h2>
+        <form action='addCourse' method='post'>
+            
+            <label>Name:</label>
+            <input type='text' name ='courseName'>
+            <label>Description:</label>
+            <textarea style="resize:none" rows="10" cols="50" name="desc"></textarea>
+            {% csrf_token %}
+            <input type='submit' value='Add'>
+        </form>
+
+        <h2>Courses</h2>
+        <table>
+            <tr>
+                <th>Course Name</th>
+                <th>Description</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+            {% for course in courses %}
+            <tr>
+                <td>{{course.name}}</td>
+                <td>{{course.desc}}</td>
+                <td>{{course.created_at}}</td>
+                <td><a href='/destroy/{{course.id}}'><button>remove</button></a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+    </body>
+</html>

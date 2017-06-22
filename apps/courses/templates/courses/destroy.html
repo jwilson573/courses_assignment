@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Destroy</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <h2>Are you sure you want to delete the following course?</h2>
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td>{{courses.name}}</td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td>{{courses.desc}}</td>
+            </tr>
+            <form action='/'>
+                <input type='submit' value='No'>
+            </form>
+            <form action="/confirm/{{courses.id}}" method="post">
+            {% csrf_token %}
+                <input type='submit' value="Yes! I want to delete this">
+            </form>
+        </table>
+    </body>
+</html>
